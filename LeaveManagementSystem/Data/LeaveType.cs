@@ -2,11 +2,12 @@
 
 namespace LeaveManagementSystem.Data
 {
-    public class LeaveType
+    public class LeaveType:BaseEntity
     {
-        public int Id { get; set; }
+        
         [MaxLength(150)]
         public string Name { get; set; }
         public int NumberOfDays { get; set; }
+        public List<LeaveAllocation>? LeaveAllocations { get; set; }
     }
 }

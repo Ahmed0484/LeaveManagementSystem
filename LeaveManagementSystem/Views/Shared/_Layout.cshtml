@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-success bg-gradient border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Leave Management System</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,9 +28,22 @@
                         </li>
                         @if (User.IsInRole(Roles.Administrator))
                         {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Management
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Periods" asp-action="Index">Periods</a></li>
+                                    <li><a class="dropdown-item" asp-controller="LeaveAllocation" asp-action="Index">View Employees</a></li>
+                                </ul>
+                            </li>                           
+                        }
+                        @if (User!.Identity!.IsAuthenticated)
+                        {
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a>
-                        </li>                            
+                                <a class="nav-link" asp-area="" asp-controller="LeaveAllocations" asp-action="Details">View Allocations</a>
+                            </li>
                         }
                     </ul>
                     <partial name="_LoginPartial" />
@@ -44,9 +57,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer bg-success bg-gradient">
         <div class="container">
-            &copy; @DateTime.Now.Year - LeaveManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - LeaveManagementSystem
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
