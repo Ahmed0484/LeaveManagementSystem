@@ -1,3 +1,4 @@
+using LeaveManagementSystem.Common;
 using LeaveManagementSystem.Data;
 using LeaveManagementSystem.Services;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<ILeaveTypesService, LeaveTypesService>();
 builder.Services.AddScoped<ILeaveAllocationsService, LeaveAllocationsService>();
+builder.Services.AddScoped<ILeaveRequestsService, LeaveRequestsService>();
+builder.Services.AddScoped<IPeriodsService, PeriodsService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("AdminSupervisorOnly", policy => {
+        policy.RequireRole(Roles.Administrator, Roles.Supervisor);
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

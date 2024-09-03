@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LeaveManagementSystem</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LeaveManagementSystem.styles.css" asp-append-version="true" />
 </head>
@@ -35,7 +36,8 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a></li>
                                     <li><a class="dropdown-item" asp-controller="Periods" asp-action="Index">Periods</a></li>
-                                    <li><a class="dropdown-item" asp-controller="LeaveAllocation" asp-action="Index">View Employees</a></li>
+                                    <li><a class="dropdown-item" asp-controller="LeaveAllocations" asp-action="Index">View Employees</a></li>
+                                    <li><a class="dropdown-item" asp-controller="LeaveRequests" asp-action="ListRequests">List Requests</a></li>
                                 </ul>
                             </li>                           
                         }
@@ -63,6 +65,8 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
